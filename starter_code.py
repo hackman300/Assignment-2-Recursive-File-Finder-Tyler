@@ -28,7 +28,6 @@ def sum_list(numbers):
         return 0
     return numbers[0] + sum_list(numbers[1:])
 
-# Uncomment to test sum_list
 print("\nTest sum_list:")
 print(f"    sum_list([1, 2, 3, 4]) = {sum_list([1, 2, 3, 4])} (expected: 10)")
 print(f"    sum_list([]) = {sum_list([])} (expected: 0)")
@@ -57,7 +56,6 @@ def count_even(numbers):
         return 1 + count_even(numbers[1:])
     return count_even(numbers[1:])
 
-# Uncomment to test count_even
 print("\nTest count_even:")
 print(f"    count_even([1, 2, 3, 4, 5, 6]) = {count_even([1, 2, 3, 4, 5, 6])} (expected: 3)")
 print(f"    count_even([1, 3, 5]) = {count_even([1, 3, 5])} (expected: 0)")
@@ -87,7 +85,6 @@ def find_strings_with(strings, target):
         return [strings[0]] + find_strings_with(strings[1:], target)
     return find_strings_with(strings[1:], target)
 
-# Uncomment to test find_strings_with
 print("\nTest find_strings_with:")
 result = find_strings_with(["hello", "world", "help", "test"], "hel")
 print(f"  find_strings_with(['hello', 'world', 'help', 'test'], 'hel') = {result}")
@@ -167,30 +164,24 @@ if __name__ == "__main__":
     print("RECURSION ASSIGNMENT - STARTER CODE")
     print("Complete the functions above, then run this file to test your work.\n")
 
-    ## 1. Run tests for count_files functions
     print("Total files (Test Case 1):", count_files("test_cases/case1_flat")) # 5
     print("Total files (Test Case 2):", count_files("test_cases/case2_nested")) # 4
     print("Total files (Test Case 3):", count_files("test_cases/case3_infected")) # 5
 
-    ## 2. Run count_files for breached files
     print("Total files (breached files):", count_files("breach_data")) # ???
 
-    ## 3. Run tests for find_infected_files function
     print("Total Infected Files (Test Case 1):", len(find_infected_files("test_cases/case1_flat"))) # 0
     print("Total Infected Files (Test Case 2):", len(find_infected_files("test_cases/case2_nested"))) # 0
     print("Total Infected Files (Test Case 3):", len(find_infected_files("test_cases/case3_infected"))) # 3
 
-    ## 4. Run find_infected breached files
     infected = find_infected_files("breach_data")
     print("Total Infected Files (breached files):", len(infected)) # ???
 
-    # Save full paths to a file (since there are many, better than printing all)
     with open('infected_files.txt', 'w') as f:
         for path in infected:
             f.write(path + '\n')
     print("\nFiles saved to: 'infected_files.txt'")
 
-    ## 5. Determine how many files were corrupted by department (all departments)
     print("\nInfected by department:")
     for dept in os.listdir("breach_data"):
         dept_path = os.path.join("breach_data", dept)
