@@ -188,3 +188,26 @@ if __name__ == "__main__":
         if os.path.isdir(dept_path):
             count = len(find_infected_files(dept_path))
             print(f"{dept}: {count}")
+
+"""
+The count_files function has a time complexity of O(n), where n is the total number of files and folders in the directory and its subdirectories. The function works recursively, 
+and its runtime can be described as: T(n) equals the time to process a directory with n total items. If the current path is a file, it takes constant time: T(1) equals O(1). If it is a
+folder with subfolders or files, the function then lists those subfolders and files. So the recurrence is: T(n) equals sum of T(n_i) for each child plus O(d), where the n_i are the 
+sizes of the subtrees. Because the function visits every file and folder exactly once, all the work adds up linearly.
+
+In the simulation, the total number of files was 12,686, and the infected ones were around 3,806, which is exactly 30 percent, as the generator aimed for. HR took the biggest 
+hit, with 2,316 infected files. Then HR 1 had 1,064, not quite as bad but still a lot. Finance and Creative got hit as well, though not as badly. I hypothesize that the ransomware 
+started in HR when an employee opened a malicious email that triggered the malware. This then caused the ransomware to spread through shared files to other departments, encrypting 
+whatever it believed was worth encrypting.
+
+Space-wise, it is O (h) for the recursion stack, where h is the tree height. The find_infect function is similar: time is O(n) because checking extensions is quick each time, and 
+space O(h) plus whatever the list ends up holding, but the stack still dominates. Both do depth-first searches, hitting files at the end of the tree quickly and going deeper into 
+directories. They do not go over any duplicates; they are linear in the files and subdirectories.
+
+Recursion makes sense for file systems, since they are trees: each subdirectory is like a mini version of the whole thing. It follows the structure naturally, 
+handles files at base and passes off to subdirectories in the recursive part, so code stays clean without messing with your own stack.
+
+Iteration could be useful sometimes for super-deep trees that hit Python's limit, or to avoid crashing applications and programs. In large systems, too many recursive 
+calls can slow it down. Modules can perform simple traversals iteratively. However, here, recursion keeps things straightforward for a tree-like task. It is not always the best, 
+though some prefer loops better for easier debugging.
+"""
