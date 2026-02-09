@@ -1,29 +1,7 @@
-"""
-Recursion Assignment Starter Code
-Complete the recursive functions below to analyze the compromised file system.
-"""
-
 import os
 
 def sum_list(numbers):
-    """
-    Recursively calculate the sum of a list of numbers.
 
-    This is your first recursion problem. Think about:
-    - Base case: What's the sum of an empty list?
-    - Recursive case: If you know the sum of the rest of the list,
-      how do you include the first number?
-
-    Args:
-        numbers (list): List of numbers to sum
-
-    Returns:
-        int: Sum of all numbers in the list
-
-    Example:
-        sum_list([1, 2, 3, 4]) should return 10
-        sum_list([]) should return 0
-    """
     if len(numbers) == 0:
         return 0
     return numbers[0] + sum_list(numbers[1:])
@@ -34,22 +12,7 @@ print(f"    sum_list([]) = {sum_list([])} (expected: 0)")
 print(f"    sum_list([5, 5, 5]) = {sum_list([5, 5, 5])} (expected: 15)")
 
 def count_even(numbers):
-    """
-    Recursively count how many even numbers are in a list.
 
-    This teaches you how to count items that match a condition.
-    You'll use this same pattern for counting files!
-
-    Args:
-        numbers (list): List of numbers
-
-    Returns:
-        int: Count of even numbers in the list
-
-    Example:
-        count_even([1, 2, 3, 4, 5, 6]) should return 3
-        count_even([1, 3, 5]) should return 0
-    """
     if len(numbers) == 0:
         return 0
     if numbers[0] % 2 == 0:
@@ -62,23 +25,7 @@ print(f"    count_even([1, 3, 5]) = {count_even([1, 3, 5])} (expected: 0)")
 print(f"    count_even([2, 4, 6]) = {count_even([2, 4, 6])} (expected: 3)")
 
 def find_strings_with(strings, target):
-    """
-    Recursively find all strings that contain a target substring.
 
-    This teaches you how to build a list of items that match a condition.
-    You'll use this same pattern for finding infected files!
-
-    Args:
-        strings (list): List of strings to search
-        target (str): Substring to search for
-
-    Returns:
-        list: All strings that contain the target substring
-
-    Example:
-        find_strings_with(["hello", "world", "help"], "hel")
-        should return ["hello", "help"]
-    """
     if len(strings) == 0:
         return []
     if target in strings[0]:
@@ -95,25 +42,7 @@ print(f"  find_strings_with(['cat', 'dog', 'bird'], 'z') = {result}")
 print(f"  (expected: [])")
 
 def count_files(directory_path):
-    """
-    Recursively count all files in a directory and its subdirectories.
 
-    Args:
-        directory_path (str): Path to the directory to analyze
-
-    Returns:
-        int: Total number of files in the directory tree
-
-    Example:
-        If directory structure is:
-        root/
-            file1.txt
-            file2.txt
-            subdir/
-                file3.txt
-
-        count_files('root') should return 3
-    """
     if os.path.isfile(directory_path):
         return 1
     elif os.path.isdir(directory_path):
@@ -126,27 +55,7 @@ def count_files(directory_path):
 
 
 def find_infected_files(directory_path, extension=".encrypted"):
-    """
-    Recursively find all files with a specific extension in a directory tree.
-
-    Args:
-        directory_path (str): Path to the directory to analyze
-        extension (str): File extension to search for (default: ".encrypted")
-
-    Returns:
-        list: List of full paths to all files with the specified extension
-
-    Example:
-        If directory structure is:
-        root/
-            normal.txt
-            virus.encrypted
-            subdir/
-                data.encrypted
-
-        find_infected_files('root', '.encrypted') should return:
-        ['root/virus.encrypted', 'root/subdir/data.encrypted']
-    """
+   
     if os.path.isfile(directory_path):
         if directory_path.endswith(extension):
             return [directory_path]
